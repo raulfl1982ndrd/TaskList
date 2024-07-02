@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    // SQLite
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
