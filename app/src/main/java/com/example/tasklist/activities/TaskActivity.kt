@@ -10,20 +10,25 @@ import com.example.tasklist.databinding.ActivityTaskBinding
 
 class TaskActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityTaskBinding
+    companion object {
+        const val CATEGORIE_ID = "CATEGORIE_ID"
+    }
 
+    private lateinit var binding: ActivityTaskBinding
+    private var categorieId:Int = -1
     private lateinit var taskDAO: TaskDAO
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        categorieId = intent.getIntExtra(TaskActivity.CATEGORIE_ID,-1)
         taskDAO = TaskDAO(this)
 
         binding.saveButton.setOnClickListener {
             val taskName = binding.nameEditText.text.toString()
-            val task = Task(-1, taskName)
+            val task = Task(-1, taskName,categorieId)
             taskDAO.insert(task)
             Toast.makeText(this, "Tarea guardada correctamente", Toast.LENGTH_SHORT).show()
             finish()

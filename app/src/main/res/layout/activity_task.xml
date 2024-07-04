@@ -11,7 +11,7 @@
         android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Que hay que hacer?"/>
+        android:hint="Introduce una tarea"/>
 
     <Button
         android:id="@+id/saveButton"

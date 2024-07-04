@@ -23,10 +23,8 @@ class CategorieActivity : AppCompatActivity() {
         setContentView(binding.root)
         categorieDAO = CategorieDAO(this)
         adapter = CategorieAdapter(emptyList(), {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            navigateToTask(categorieList[it]);
             Toast.makeText(this, "Click en tarea: ${categorieList[it].name}", Toast.LENGTH_SHORT).show()
-
         }, {
             categorieDAO.delete(categorieList[it])
             Toast.makeText(this, "Tarea borrada correctamente", Toast.LENGTH_SHORT).show()
@@ -48,4 +46,11 @@ class CategorieActivity : AppCompatActivity() {
         categorieList = categorieDAO.findAll()
         adapter.updateData(categorieList)
     }
+    private fun navigateToTask(categorie: Categorie) {
+        //Toast.makeText(this, superhero.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(MainActivity.CATEGORIE_ID, categorie.id)
+        startActivity(intent)
+    }
+
 }

@@ -14,7 +14,12 @@ import com.example.tasklist.data.Task
 import com.example.tasklist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val CATEGORIE_ID = "CATEGORIE_ID"
+    }
     private lateinit var binding: ActivityMainBinding
+    private var categorieId:Int = -1
     private lateinit var adapter: TaskAdapter
     private lateinit var taskList: List<Task>
     private lateinit var taskDAO: TaskDAO
@@ -22,33 +27,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        categorieId = intent.getIntExtra(CATEGORIE_ID,-1)
+
         taskDAO = TaskDAO(this)
         adapter = TaskAdapter(emptyList(), {
             Toast.makeText(this, "Click en tarea: ${taskList[it].name}", Toast.LENGTH_SHORT).show()
         }, {
             taskDAO.delete(taskList[it])
             Toast.makeText(this, "Tarea borrada correctamente", Toast.LENGTH_SHORT).show()
-            loadData()
+            loadData(categorieId)
         }, {
             val task = taskList[it]
             task.done = !task.done
             taskDAO.update(task)
-            loadData()
+            loadData(categorieId)
         })
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.addTaskButton.setOnClickListener {
             val intent = Intent(this, TaskActivity::class.java)
+            intent.putExtra(TaskActivity.CATEGORIE_ID, categorieId)
             startActivity(intent)
         }
     }
     override fun onResume() {
         super.onResume()
-        loadData()
+        loadData(categorieId)
     }
-    private fun loadData() {
-        taskList = taskDAO.findAll()
+    private fun loadData(categorieid:Int) {
+        taskList = taskDAO.findByCategorie(categorieid)
         adapter.updateData(taskList)
     }
 }

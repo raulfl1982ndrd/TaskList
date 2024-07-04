@@ -10,7 +10,7 @@ class TaskDAO(context: Context) {
         val values = ContentValues()
         values.put(Task.COLUMN_NAME_TITLE, task.name)
         values.put(Task.COLUMN_NAME_DONE, task.done)
-
+        values.put(Task.COLUMN_ID_CATEGORIE, task.categorieId)
         val newRowId = db.insert(Task.TABLE_NAME, null, values)
         task.id = newRowId.toInt()
 
@@ -56,8 +56,9 @@ class TaskDAO(context: Context) {
         if (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
+            val catid = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_ID_CATEGORIE))
             val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
-            task = Task(id, name, done)
+            task = Task(id, name, catid, done)
         }
         cursor.close()
         db.close()
@@ -80,8 +81,35 @@ class TaskDAO(context: Context) {
         while (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
+            val catid = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_ID_CATEGORIE))
             val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
-            val task = Task(id, name, done)
+            val task = Task(id, name,catid, done)
+            tasks.add(task)
+        }
+        cursor.close()
+        db.close()
+        return tasks
+    }
+    fun findByCategorie(categorie_id: Int) : List<Task> {
+        val db = databaseManager.readableDatabase
+        val projection = arrayOf(BaseColumns._ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE,Task.COLUMN_ID_CATEGORIE)
+        val cursor = db.query(
+            Task.TABLE_NAME,                        // The table to query
+            projection,                             // The array of columns to return (pass null to get all)
+            "${Task.COLUMN_ID_CATEGORIE} = $categorie_id",      // The columns for the WHERE clause
+            null,                         // The values for the WHERE clause
+            null,                            // don't group the rows
+            null,                             // don't filter by row groups
+            "${Task.COLUMN_NAME_DONE} ASC"                             // The sort order
+        )
+
+        var tasks = mutableListOf<Task>()
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
+            val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
+            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
+            val catid = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_ID_CATEGORIE))
+            val task = Task(id, name,catid, done)
             tasks.add(task)
         }
         cursor.close()
