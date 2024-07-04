@@ -26,6 +26,9 @@ class CategorieActivity : AppCompatActivity() {
             navigateToTask(categorieList[it]);
             Toast.makeText(this, "Click en tarea: ${categorieList[it].name}", Toast.LENGTH_SHORT).show()
         }, {
+            navigateEditCategory(categorieList[it])
+            Toast.makeText(this, "Editar tarea: ${categorieList[it].name}", Toast.LENGTH_SHORT).show()
+        }, {
             categorieDAO.delete(categorieList[it])
             Toast.makeText(this, "Tarea borrada correctamente", Toast.LENGTH_SHORT).show()
             loadData()
@@ -52,5 +55,10 @@ class CategorieActivity : AppCompatActivity() {
         intent.putExtra(MainActivity.CATEGORIE_ID, categorie.id)
         startActivity(intent)
     }
-
+    private fun navigateEditCategory(categorie: Categorie) {
+        //Toast.makeText(this, superhero.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, CreateCategorieActivity::class.java)
+        intent.putExtra(CreateCategorieActivity.CATEGORIE_ID, categorie.id)
+        startActivity(intent)
+    }
 }

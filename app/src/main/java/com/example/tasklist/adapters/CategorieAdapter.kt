@@ -11,6 +11,7 @@ import com.example.tasklist.databinding.ItemCategorieBinding
 class CategorieAdapter (
     private var dataSet: List<Categorie> = emptyList(),
     private val onItemClickListener: (Int) -> Unit,
+    private val onItemEditClickListener: (Int) -> Unit,
     private val onItemDeleteClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<CategorieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategorieViewHolder {
@@ -22,6 +23,9 @@ class CategorieAdapter (
         holder.render(dataSet[position])
         holder.itemView.setOnClickListener {
             onItemClickListener(position)
+        }
+        holder.binding.editButtonCategorie.setOnClickListener {
+            onItemEditClickListener(position)
         }
         holder.binding.deleteButtonCategorie.setOnClickListener {
             onItemDeleteClickListener(position)
