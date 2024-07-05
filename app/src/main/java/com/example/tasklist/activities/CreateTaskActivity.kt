@@ -27,10 +27,15 @@ class CreateTaskActivity : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
             val taskName = binding.nameEditText.text.toString()
-            val task = Task(-1, taskName,categorieId)
-            taskDAO.insert(task)
-            Toast.makeText(this, "Tarea guardada correctamente", Toast.LENGTH_SHORT).show()
-            finish()
+
+            if (taskName != ""){
+                val task = Task(-1, taskName,categorieId)
+                taskDAO.insert(task)
+                Toast.makeText(this, "Tarea guardada correctamente", Toast.LENGTH_SHORT).show()
+                finish()
+            }else{
+                Toast.makeText(this, "La tarea no puede estar vacia", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

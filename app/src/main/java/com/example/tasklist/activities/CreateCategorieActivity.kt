@@ -31,16 +31,20 @@ class CreateCategorieActivity : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
             val categorieName = binding.nameEditText.text.toString()
+            if (categorieName != "") {
+                if (categorieId != -1) {
+                    categorie = Categorie(categorieId, categorieName)
+                    categorieDAO.update(categorie)
+                } else {
+                    categorie = Categorie(-1, categorieName)
+                    categorieDAO.insert(categorie)
+                }
 
-            if (categorieId != -1) {
-                categorie = Categorie(categorieId, categorieName)
-                categorieDAO.update(categorie)
-            }else {
-                categorie = Categorie(-1, categorieName)
-                categorieDAO.insert(categorie)
-            }
-            Toast.makeText(this, "Tarea guardada correctamente", Toast.LENGTH_SHORT).show()
-            finish()
+                Toast.makeText(this, "Tarea guardada correctamente", Toast.LENGTH_SHORT).show()
+                finish()
+            }else{
+                Toast.makeText(this, "La categoria no puede estar vacia", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }
