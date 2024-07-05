@@ -1,6 +1,8 @@
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tasklist.R
 import com.example.tasklist.data.Task
 import com.example.tasklist.databinding.ItemTaskBinding
 
@@ -40,5 +42,9 @@ class TaskViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(bin
     fun render(task: Task) {
         binding.nameTextView.text = task.name
         binding.doneCheckBox.isChecked = task.done
+        if (task.done)
+            binding.nameTextView.setTextColor(itemView.context.getColor(R.color.green))
+        else
+            binding.nameTextView.setTextColor(itemView.context.getColor(R.color.red))
     }
 }

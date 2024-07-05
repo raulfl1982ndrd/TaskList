@@ -1,6 +1,5 @@
 package com.example.tasklist.activities
 
-import TaskAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasklist.adapters.CategorieAdapter
 import com.example.tasklist.data.Categorie
 import com.example.tasklist.data.CategorieDAO
-import com.example.tasklist.data.TaskDAO
 import com.example.tasklist.databinding.ActivityCategorieBinding
 
 class CategorieActivity : AppCompatActivity() {
@@ -51,8 +49,8 @@ class CategorieActivity : AppCompatActivity() {
     }
     private fun navigateToTask(categorie: Categorie) {
         //Toast.makeText(this, superhero.name, Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra(MainActivity.CATEGORIE_ID, categorie.id)
+        val intent = Intent(this, TaskActivity::class.java)
+        intent.putExtra(TaskActivity.CATEGORIE_ID, categorie.id)
         startActivity(intent)
     }
     private fun navigateEditCategory(categorie: Categorie) {

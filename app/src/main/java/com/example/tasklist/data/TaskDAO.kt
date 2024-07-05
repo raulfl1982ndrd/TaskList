@@ -3,6 +3,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.provider.BaseColumns
 import com.example.tasklist.utils.DatabaseManager
+import com.example.tasklist.data.Categorie
 class TaskDAO(context: Context) {
     private val databaseManager: DatabaseManager = DatabaseManager(context)
     fun insert(task: Task) {
@@ -115,5 +116,28 @@ class TaskDAO(context: Context) {
         cursor.close()
         db.close()
         return tasks
+    }
+    fun countByCategoryAndDone(categorie: Categorie): Int {
+        val db = databaseManager.writableDatabase
+
+        val cursor = db.query(
+            Task.TABLE_NAME,                 // The table to query
+            arrayOf("COUNT(*)"),     // The array of columns to return (pass null to get all)
+            "${Task.COLUMN_ID_CATEGORIE} = ${categorie.id} AND ${Task.COLUMN_NAME_DONE} = false",                // The columns for the WHERE clause
+            null,          // The values for the WHERE clause
+            null,                   // don't group the rows
+            null,                   // don't filter by row groups
+            null               // The sort order
+        )
+
+        var count = -1
+        if (cursor.moveToNext()) {
+            count = cursor.getInt(0)
+        }
+
+        cursor.close()
+        db.close()
+
+        return count
     }
 }

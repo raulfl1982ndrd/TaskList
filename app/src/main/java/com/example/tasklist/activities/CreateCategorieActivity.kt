@@ -3,11 +3,8 @@ package com.example.tasklist.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.tasklist.R
 import com.example.tasklist.data.Categorie
 import com.example.tasklist.data.CategorieDAO
-import com.example.tasklist.data.Task
-import com.example.tasklist.data.TaskDAO
 import com.example.tasklist.databinding.ActivityCreateCategorieBinding
 
 
@@ -23,9 +20,9 @@ class CreateCategorieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateCategorieBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        categorieId = intent.getIntExtra(TaskActivity.CATEGORIE_ID,-1)
+        categorieId = intent.getIntExtra(CreateTaskActivity.CATEGORIE_ID,-1)
 
-        categorieDAO = CategorieDAO(this)
+        categorieDAO= CategorieDAO(this)
 
             if (categorieId != -1){
                 categorie = categorieDAO.find(categorieId)!!

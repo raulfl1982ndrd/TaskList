@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.TaskActivity"
+            android:name=".activities.CreateTaskActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.TaskActivity"
             android:exported="true"></activity>
     </application>
 
