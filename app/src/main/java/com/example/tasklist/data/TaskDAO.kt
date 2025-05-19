@@ -123,7 +123,7 @@ class TaskDAO(context: Context) {
         val cursor = db.query(
             Task.TABLE_NAME,                 // The table to query
             arrayOf("COUNT(*)"),     // The array of columns to return (pass null to get all)
-            "${Task.COLUMN_ID_CATEGORIE} = ${categorie.id} AND ${Task.COLUMN_NAME_DONE} = false",                // The columns for the WHERE clause
+            "${Task.COLUMN_ID_CATEGORIE} = ${categorie.id} AND ${Task.COLUMN_NAME_DONE} = 0",                // The columns for the WHERE clause
             null,          // The values for the WHERE clause
             null,                   // don't group the rows
             null,                   // don't filter by row groups
