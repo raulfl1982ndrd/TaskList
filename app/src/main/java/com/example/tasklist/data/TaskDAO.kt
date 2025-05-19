@@ -58,7 +58,7 @@ class TaskDAO(context: Context) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
             val catid = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_ID_CATEGORIE))
-            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
+            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE))
             task = Task(id, name, catid, done)
         }
         cursor.close()
@@ -83,7 +83,7 @@ class TaskDAO(context: Context) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
             val catid = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_ID_CATEGORIE))
-            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
+            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE))
             val task = Task(id, name,catid, done)
             tasks.add(task)
         }
@@ -108,7 +108,7 @@ class TaskDAO(context: Context) {
         while (cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
             val name = cursor.getString(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_TITLE))
-            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE)) == 1
+            val done = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_NAME_DONE))
             val catid = cursor.getInt(cursor.getColumnIndexOrThrow(Task.COLUMN_ID_CATEGORIE))
             val task = Task(id, name,catid, done)
             tasks.add(task)

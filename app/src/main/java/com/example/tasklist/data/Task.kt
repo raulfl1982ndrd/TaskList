@@ -2,7 +2,7 @@ package com.example.tasklist.data
 
 import android.provider.BaseColumns
 
-data class Task(var id: Int, var name: String,var categorieId :Int, var done: Boolean = false,) {
+data class Task(var id: Int, var name: String,var categorieId :Int, var done: Int = 0,) {
 
     companion object {
         const val TABLE_NAME = "Tasks"
