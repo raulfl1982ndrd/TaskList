@@ -31,7 +31,9 @@ class CreateCategorieActivity : AppCompatActivity() {
 
 
         binding.saveButton.setOnClickListener {
-            val categorieName = binding.nameEditText.text.toString()
+            var categorieName = binding.nameEditText.text.toString()
+            categorieName = categorieName.trimStart().trimEnd().lowercase().replaceFirstChar { it.uppercaseChar() }
+
             if (categorieName != "") {
                 if (categorieId != -1) {
                     categorie = Categorie(categorieId, categorieName,"#000000")
