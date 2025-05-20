@@ -61,6 +61,9 @@ class TaskActivity : AppCompatActivity() {
             intent.putExtra(CreateTaskActivity.CATEGORIE_ID, categorieId)
             startActivity(intent)
         }
+        binding.categorieName.text = category.name.lowercase().replaceFirstChar { it.uppercaseChar() }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = category.name
         initView()
     }
     override fun onResume() {

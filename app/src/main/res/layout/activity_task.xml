@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".activities.TaskActivity">
     <TextView
+        android:id="@+id/categorieName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Task"

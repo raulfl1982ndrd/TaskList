@@ -143,7 +143,8 @@ class CategorieActivity : AppCompatActivity() {
 
         // Need to move listener after show dialog to prevent dismiss
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            val categoryName = binding.taskTextField.editText?.text.toString()
+            var categoryName = binding.taskTextField.editText?.text.toString()
+            categoryName = categoryName.trimStart().trimEnd().lowercase().replaceFirstChar { it.uppercaseChar() }
             if (categoryName.isNotEmpty()) {
                 val category = Categorie(-1, categoryName,"#000000")
                 categorieDAO.insert(category)
@@ -187,7 +188,8 @@ class CategorieActivity : AppCompatActivity() {
 
         // Need to move listener after show dialog to prevent dismiss
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            val categoryName = binding.taskTextField.editText?.text.toString()
+            var categoryName = binding.taskTextField.editText?.text.toString()
+            categoryName = categoryName.trimStart().trimEnd().lowercase().replaceFirstChar { it.uppercaseChar() }
             if (categoryName.isNotEmpty()) {
                 category.name = categoryName
                 category.color = "#000000"
