@@ -11,10 +11,13 @@ import com.example.tasklist.databinding.ItemCategorieBinding
 
 
 class CategorieAdapter (
+    context: Context,
     private var dataSet: List<Categorie> = emptyList(),
     private val onItemClickListener: (Int) -> Unit,
     private val onItemEditClickListener: (Int) -> Unit,
-    private val onItemDeleteClickListener: (Int) -> Unit
+    private val onItemDeleteClickListener: (Int) -> Unit,
+    private val onClickListener: (position:Int) -> Unit,
+    private val onLongClickListener: (position:Int) -> Boolean
 ) : RecyclerView.Adapter<CategorieViewHolder>() {
 
 
@@ -34,6 +37,8 @@ class CategorieAdapter (
         holder.binding.deleteButtonCategorie.setOnClickListener {
             onItemDeleteClickListener(position)
         }
+        holder.itemView.setOnClickListener { onClickListener(position) }
+        holder.itemView.setOnLongClickListener { onLongClickListener(position) }
         }
 
     fun updateData(dataSet: List<Categorie>) {

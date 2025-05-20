@@ -24,19 +24,20 @@ class CreateCategorieActivity : AppCompatActivity() {
 
         categorieDAO= CategorieDAO(this)
 
-            if (categorieId != -1){
-                categorie = categorieDAO.find(categorieId)!!
-                binding.nameEditText.setText(categorie.name)
-            }
+        if (categorieId != -1){
+            categorie = categorieDAO.find(categorieId)!!
+            binding.nameEditText.setText(categorie.name)
+        }
+
 
         binding.saveButton.setOnClickListener {
             val categorieName = binding.nameEditText.text.toString()
             if (categorieName != "") {
                 if (categorieId != -1) {
-                    categorie = Categorie(categorieId, categorieName)
+                    categorie = Categorie(categorieId, categorieName,"#000000")
                     categorieDAO.update(categorie)
                 } else {
-                    categorie = Categorie(-1, categorieName)
+                    categorie = Categorie(-1, categorieName, "#000000")
                     categorieDAO.insert(categorie)
                 }
 

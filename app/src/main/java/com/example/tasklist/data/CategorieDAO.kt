@@ -56,7 +56,7 @@ class CategorieDAO(context: Context) {
             if (cursor.moveToNext()) {
                 val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(Categorie.COLUMN_NAME_TITLE))
-                categorie = Categorie(id, name)
+                categorie = Categorie(id, name,"#000000")
             }
             cursor.close()
             db.close()
@@ -80,7 +80,7 @@ class CategorieDAO(context: Context) {
                 val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(Categorie.COLUMN_NAME_TITLE))
 
-                val categorie = Categorie(id, name)
+                val categorie = Categorie(id, name,"#000000")
                 categories.add(categorie)
             }
             cursor.close()
