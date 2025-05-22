@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Tasks list</string>
-    <string name="categories_list">Tasks list</string>
+    <string name="categories_list">Category</string>
 
     <string name="add_task_title">Add new task</string>
     <string name="add_task_button">Add</string>

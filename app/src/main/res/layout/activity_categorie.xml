@@ -6,14 +6,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.TaskActivity">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="center_horizontal"
+        android:background="?attr/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <TextView
+        android:id="@+id/toolbarTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Categories"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:textColor="@color/textPrimary"
+        android:textSize="30sp"/>
+        />
+    </androidx.appcompat.widget.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Categories"
         android:textStyle="bold"
         android:textSize="30sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:visibility="gone"/>
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"

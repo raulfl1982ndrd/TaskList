@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasklist.R
 import com.example.tasklist.adapters.CategorieAdapter
@@ -39,6 +41,11 @@ class CategorieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCategorieBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Oculta el título por defecto
         categorieDAO = CategorieDAO(this)
         categorieList = categorieDAO.findAll().toMutableList()
         adapter = CategorieAdapter(this,emptyList(), {
@@ -119,6 +126,8 @@ class CategorieActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+        val item = menu?.findItem(R.id.menu_add_category)
+        item?.icon?.setTint(ContextCompat.getColor(this, R.color.textPrimary))
         return true
     }
 
