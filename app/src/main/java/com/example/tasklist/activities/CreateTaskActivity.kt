@@ -29,12 +29,12 @@ class CreateTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
         categorieId = intent.getIntExtra(CreateTaskActivity.CATEGORIE_ID,-1)
         taskId = intent.getIntExtra(CreateTaskActivity.TASK_ID,-1)
-        Toast.makeText(this, "Editar tarea id: ${taskId}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Editar tarea id: ${taskId}", Toast.LENGTH_SHORT).show()
         taskDAO = TaskDAO(this)
 
         if (taskId != -1){
             task = taskDAO.find(taskId)!!
-            Toast.makeText(this, "Editar tarea name: ${task.name}", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Editar tarea name: ${task.name}", Toast.LENGTH_SHORT).show()
             binding.nameEditText.setText(task.name)
         }
 

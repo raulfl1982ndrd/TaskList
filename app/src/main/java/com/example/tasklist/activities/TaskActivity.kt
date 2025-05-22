@@ -209,7 +209,7 @@ class TaskActivity : AppCompatActivity() {
     private fun onItemEditClickListener(task: Task) {
         //Toast.makeText(this, superhero.name, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, CreateTaskActivity::class.java)
-        Toast.makeText(this, "Editar tarea antes: ${taskId}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Editar tarea antes: ${taskId}", Toast.LENGTH_SHORT).show()
         intent.putExtra(CreateTaskActivity.TASK_ID, task.id)
         startActivity(intent)
     }
