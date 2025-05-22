@@ -28,7 +28,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_task"/>
+            tools:listitem="@layout/item_task" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addTaskButton"
