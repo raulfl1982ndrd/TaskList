@@ -3,6 +3,7 @@ package com.example.tasklist.activities
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -15,6 +16,8 @@ import com.example.tasklist.data.Categorie
 import com.example.tasklist.data.CategorieDAO
 import com.example.tasklist.databinding.ActivityCategorieBinding
 import com.example.tasklist.databinding.AddCategoryDialogBinding
+import com.example.tasklist.utils.DatabaseManager
+import java.io.File
 import java.util.Locale
 
 class CategorieActivity : AppCompatActivity() {
@@ -23,6 +26,16 @@ class CategorieActivity : AppCompatActivity() {
     private lateinit var categorieList: MutableList<Categorie>
     private lateinit var categorieDAO: CategorieDAO
     override fun onCreate(savedInstanceState: Bundle?) {
+/*        val dbName = DatabaseManager.DATABASE_NAME
+        val dbFile = File(applicationContext.getDatabasePath(dbName).absolutePath)
+
+        if (dbFile.exists()) {
+            Log.d("Database", "Database exists before delete.")
+            applicationContext.deleteDatabase(dbName)
+            Log.d("Database", "Database deleted.")
+        } else {
+            Log.d("Database", "Database doesn't exist before delete.")
+        }*/
         super.onCreate(savedInstanceState)
         binding = ActivityCategorieBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -43,7 +43,7 @@ class TaskDAO(context: Context) {
 
     fun find(id: Int) : Task? {
         val db = databaseManager.readableDatabase
-        val projection = arrayOf(BaseColumns._ID, Task.COLUMN_NAME_TITLE, Task.COLUMN_NAME_DONE)
+        val projection = arrayOf(BaseColumns._ID, Task.COLUMN_NAME_TITLE,Task.COLUMN_ID_CATEGORIE, Task.COLUMN_NAME_DONE)
         val cursor = db.query(
             Task.TABLE_NAME,                        // The table to query
             projection,                             // The array of columns to return (pass null to get all)

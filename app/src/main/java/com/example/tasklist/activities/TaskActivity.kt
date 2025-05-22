@@ -40,6 +40,10 @@ class TaskActivity : AppCompatActivity() {
         taskDAO = TaskDAO(this)
         adapter = TaskAdapter(emptyList(), {
             Toast.makeText(this, "Click en tarea: ${taskList[it].name}", Toast.LENGTH_SHORT).show()
+        },onItemEditClickListener={position->
+            navigateEditTask(taskList[position])
+            Toast.makeText(this, "Editar tarea: ${taskList[position].name}", Toast.LENGTH_SHORT).show()
+
         }, onItemClickCheckBoxListener = { position ->
             // Aquí actualizas el estado done de la tarea
             val task = taskList[position]
@@ -79,6 +83,8 @@ class TaskActivity : AppCompatActivity() {
         adapter = TaskAdapter(listOf(), {
             onItemClickListener(it)
         }, {
+            onItemEditClickListener(taskList[it])
+        }, {
             onItemClickCheckBoxListener(it)
         }, {
             onItemClickRemoveListener(it)
@@ -94,6 +100,12 @@ class TaskActivity : AppCompatActivity() {
     private fun loadData(categorieid:Int) {
         taskList = taskDAO.findByCategorie(categorieid)
         adapter.updateData(taskList)
+    }
+    private fun navigateEditTask(task: Task) {
+        //Toast.makeText(this, superhero.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, CreateTaskActivity::class.java)
+        intent.putExtra(CreateTaskActivity.TASK_ID, task.id)
+        startActivity(intent)
     }
     private fun configureGestures() {
         val gestures = ItemTouchHelper(
@@ -194,7 +206,13 @@ class TaskActivity : AppCompatActivity() {
     private fun onItemClickListener(position:Int) {
         editTask(position)
     }
-
+    private fun onItemEditClickListener(task: Task) {
+        //Toast.makeText(this, superhero.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, CreateTaskActivity::class.java)
+        Toast.makeText(this, "Editar tarea antes: ${taskId}", Toast.LENGTH_SHORT).show()
+        intent.putExtra(CreateTaskActivity.TASK_ID, task.id)
+        startActivity(intent)
+    }
     private fun onItemClickCheckBoxListener(position:Int) {
         val task: Task = taskList[position]
         if (task.done == 0)

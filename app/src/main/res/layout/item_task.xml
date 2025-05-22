@@ -19,7 +19,16 @@
         android:layout_weight="1"
         android:textSize="18sp"
         tools:text="TextView"/>
-
+    <ImageButton
+        android:id="@+id/editButtonTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_edit_24"
+        android:backgroundTint="@color/teal_200"
+        android:contentDescription="@string/edit_category_title"
+        android:padding="16dp" />
     <ImageButton
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"

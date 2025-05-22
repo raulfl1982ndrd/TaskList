@@ -11,6 +11,7 @@ import com.example.tasklist.utils.TaskDiffUtils
 class TaskAdapter (
     private var dataSet: List<Task> = emptyList(),
     private val onItemClickListener: (Int) -> Unit,
+    private val onItemEditClickListener: (Int) -> Unit,
     private val onItemClickCheckBoxListener: (Int) -> Unit,
     private val onItemClickRemoveListener: (Int) -> Unit
 ) : RecyclerView.Adapter<TaskViewHolder>() {
@@ -24,7 +25,9 @@ class TaskAdapter (
         holder.itemView.setOnClickListener {
             onItemClickListener(position)
         }
-
+        holder.binding.editButtonTask.setOnClickListener {
+            onItemEditClickListener(position)
+        }
         holder.binding.doneCheckBox.setOnClickListener {
             onItemClickCheckBoxListener(position)
         }
