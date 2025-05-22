@@ -149,7 +149,7 @@ class CategorieActivity : AppCompatActivity() {
     }
 
     private fun addCategory() {
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_DayNight_Dialog_Alert)
         val binding: AddCategoryDialogBinding = AddCategoryDialogBinding.inflate(layoutInflater)
         dialogBuilder.setView(binding.root)
 
@@ -182,7 +182,7 @@ class CategorieActivity : AppCompatActivity() {
     private fun editCategory(position: Int) {
         val category: Categorie = categorieList[position]
 
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_DayNight_Dialog_Alert)
         val binding: AddCategoryDialogBinding = AddCategoryDialogBinding.inflate(layoutInflater)
         dialogBuilder.setView(binding.root)
 
@@ -226,7 +226,7 @@ class CategorieActivity : AppCompatActivity() {
     }
 
     private fun deleteCategory(category: Categorie) {
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_DayNight_Dialog_Alert)
 
         dialogBuilder.setTitle(R.string.delete_category_title)
         dialogBuilder.setMessage(getString(R.string.delete_category_confirm_message, category.name))

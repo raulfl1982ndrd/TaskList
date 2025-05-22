@@ -130,7 +130,7 @@ class TaskActivity : AppCompatActivity() {
         gestures.attachToRecyclerView(binding.recyclerView)
     }
     private fun addTask() {
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_DayNight_Dialog_Alert)
         val binding: AddTaskDialogBinding = AddTaskDialogBinding.inflate(layoutInflater)
         dialogBuilder.setView(binding.root)
 
@@ -166,7 +166,7 @@ class TaskActivity : AppCompatActivity() {
     private fun editTask(position: Int) {
         val task: Task = taskList[position]
 
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_DayNight_Dialog_Alert)
         val binding: AddTaskDialogBinding = AddTaskDialogBinding.inflate(layoutInflater)
         dialogBuilder.setView(binding.root)
 
@@ -229,7 +229,7 @@ class TaskActivity : AppCompatActivity() {
 
     private fun onItemClickRemoveListener(position:Int) {
         val task: Task = taskList[position]
-        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(this, com.google.android.material.R.style.Theme_Material3_DayNight_Dialog_Alert)
 
         dialogBuilder.setTitle(R.string.delete_task_title)
         dialogBuilder.setMessage(getString(R.string.delete_task_confirm_message, task.name))
